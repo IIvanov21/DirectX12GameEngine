@@ -1,0 +1,7 @@
+[2021-07-28 13:47:11.071] [GameFramework] [info] GameFramework class created.
+[2021-07-28 13:47:12.076] [HDR] [info] FPS: 2.992872
+[2021-07-28 13:47:13.078] [HDR] [info] FPS: 144.7118
+[2021-07-28 13:47:14.084] [HDR] [info] FPS: 144.0405
+[2021-07-28 13:47:15.085] [HDR] [info] FPS: 143.9852
+[2021-07-28 13:47:16.091] [HDR] [info] FPS: 144.0381
+[2021-07-28 13:47:16.639] [GameFramework] [info] GameFramework class destroyed.
