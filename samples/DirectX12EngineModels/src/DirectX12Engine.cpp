@@ -96,7 +96,7 @@ DirectX12Engine::DirectX12Engine( const std::wstring& name, int width, int heigh
 , m_ShowFileOpenDialog( false )
 , m_CancelLoading( false )
 , m_ShowControls( true )
-, m_ShowInspector( true )
+, m_ShowHierarchy( true )
 , m_Width( width )
 , m_Height( height )
 , m_IsLoading( true )
@@ -893,9 +893,9 @@ void DirectX12Engine::OnGUI( const std::shared_ptr<CommandList>& commandList, co
         ImGui::EndMainMenuBar();
     }
 
-    if ( m_ShowInspector ) 
+    if ( m_ShowHierarchy ) 
     {
-        ImGui::Begin( "Inspector", &m_ShowInspector );
+        ImGui::Begin( "Hierarchy", &m_ShowHierarchy );
         ImGui::SetWindowSize( ImVec2(200.0f,700.0f) );
         ImGui::SetWindowPos( ImVec2( 0.0f, 20.0f ) );
         for( auto it : m_AssetsList )

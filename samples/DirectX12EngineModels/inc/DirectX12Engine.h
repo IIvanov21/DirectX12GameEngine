@@ -235,7 +235,7 @@ private:
     bool              m_ShowFileOpenDialog;
     bool              m_CancelLoading;
     bool              m_ShowControls;
-    bool              m_ShowInspector;
+    bool              m_ShowHierarchy;
     bool              m_Selected=false;
     std::atomic_bool  m_IsLoading;
     std::future<bool> m_LoadingTask;
