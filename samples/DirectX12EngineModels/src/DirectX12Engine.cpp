@@ -403,7 +403,10 @@ void DirectX12Engine::NearestEntity()
             {
                 if ( m_ModelSelected)
                 {
+                    //Hierarchy selectable check
+                    if ( m_Scene != nullptr )m_Scene->GetRootNode()->SetSelection( false );
                     m_Scene = it;
+                    m_Scene->GetRootNode()->SetSelection( true );
                     m_ModelSelected = false;
                 }
                 nearestDistance = pixelDistance;
@@ -425,7 +428,7 @@ void DirectX12Engine::OnUpdate( UpdateEventArgs& e )
         m_FPS = frameCount / totalTime;
 
         wchar_t buffer[512];
-        ::swprintf_s( buffer, L"Models [FPS: %f]", m_FPS );
+        ::swprintf_s( buffer, L"Ifonity [FPS: %f]", m_FPS );
         m_Window->SetWindowTitle( buffer );
 
         frameCount = 0;
@@ -753,6 +756,8 @@ void DirectX12Engine::OnMousePressed( MouseButtonEventArgs& m )
             m_ModelSelected = true;
             break;
         case MouseButton::Right:
+            if ( m_Scene != nullptr )
+                m_Scene->GetRootNode()->SetSelection( false );
             m_Scene = nullptr;
             break;
         }
@@ -900,7 +905,17 @@ void DirectX12Engine::OnGUI( const std::shared_ptr<CommandList>& commandList, co
         ImGui::SetWindowPos( ImVec2( 0.0f, 20.0f ) );
         for( auto it : m_AssetsList )
         {
-            ImGui::Selectable( (const char*)it->GetRootNode()->GetName().c_str(), &it->GetRootNode()->GetSelection() );
+            ImGui::Selectable( it->GetRootNode()->GetName().c_str(), &it->GetRootNode()->GetSelection() );
+            if (m_Scene!=nullptr && m_Scene!=it && it->GetRootNode()->GetSelection())
+            {
+                m_Scene->GetRootNode()->SetSelection( );
+                m_Scene = it;
+            }
+
+            if ( it->GetRootNode()->GetSelection() ) 
+            {
+                 m_Scene = it;
+            }
         }
 
         
