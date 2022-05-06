@@ -20,6 +20,7 @@ public:
     {
         LMB,    // Is the left-mouse button pressed?
         RMB,    // Is the right-mouse button pressed?
+        MMB,    // Is the middle-mouse button pressed
         MoveX,  // Move Left/right.
         MoveY,  // Move Forward/backward.
         MoveZ,  // Move Up/down.

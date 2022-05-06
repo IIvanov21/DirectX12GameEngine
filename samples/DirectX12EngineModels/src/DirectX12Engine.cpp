@@ -96,6 +96,7 @@ DirectX12Engine::DirectX12Engine( const std::wstring& name, int width, int heigh
 , m_ShowFileOpenDialog( false )
 , m_CancelLoading( false )
 , m_ShowControls( true )
+, m_ShowInspector( true )
 , m_Width( width )
 , m_Height( height )
 , m_IsLoading( true )
@@ -132,6 +133,8 @@ DirectX12Engine::DirectX12Engine( const std::wstring& name, int width, int heigh
     m_Window->KeyPressed += KeyboardEvent::slot( &DirectX12Engine::OnKeyPressed, this );
     m_Window->KeyReleased += KeyboardEvent::slot( &DirectX12Engine::OnKeyReleased, this );
     m_Window->MouseMoved += MouseMotionEvent::slot( &DirectX12Engine::OnMouseMoved, this );
+    m_Window->MouseButtonPressed += MouseButtonEvent::slot(&DirectX12Engine::OnMousePressed, this);
+    m_Window->MouseButtonReleased += MouseButtonEvent::slot( &DirectX12Engine::OnMouseReleased, this );
 }
 
 DirectX12Engine::~DirectX12Engine()
@@ -246,6 +249,8 @@ void DirectX12Engine::LoadContent()
     m_Cone   = commandList->CreateCone( 0.1f, 0.2f );
     m_Axis   = commandList->LoadSceneFromFile( L"Assets/Models/axis_of_evil.nff" );
 
+    
+    //Example of manual loading assets into the scene
     //Create some default models for the scene
     m_Avocado = commandList->LoadSceneFromFile( L"Assets/Models/Avakado/Avakado.fbx" );
     m_Avocado->GetRootNode()->SetName( "Avocado" );//Set the name so it can be used as ID in the list.
@@ -275,9 +280,9 @@ void DirectX12Engine::LoadContent()
     XMMATRIX scaleMatrix = XMMatrixScaling( 0.01f, 0.01f, 0.01f );
     XMMATRIX translationMatrix = XMMatrixTranslation( 0.0f, 50.0f, 0.0f );
     XMMATRIX rotationMatrix    = XMMatrixRotationX( ToRadians( 180 ));
+    m_AssetsList[0]->GetRootNode()->SetLocalTransform( XMMatrixScaling( 0.008f,0.008f,0.008f ) * XMMatrixTranslation( -4.8f,19.36f,23.89f ));
     m_Avocado->GetRootNode()->SetLocalTransform( scaleMatrix * translationMatrix * rotationMatrix );
     m_Ship->GetRootNode()->SetLocalTransform( scaleMatrix * translationMatrix * rotationMatrix );
-    m_AssetsList[0]->GetRootNode()->SetLocalTransform( XMMatrixScaling( 0.008f,0.008f,0.008f ) * XMMatrixTranslation( -4.8f,19.36f,23.89f ));
     m_Tree1->GetRootNode()->SetLocalTransform( XMMatrixScaling( 0.4f,0.4f,0.4f ) * XMMatrixTranslation( -6.0f,19.0f,11.5f ) );
     m_Tree2->GetRootNode()->SetLocalTransform( XMMatrixScaling( 0.33f,0.33f,0.33f ) * XMMatrixTranslation( 18.1f,17.5f,25.0f ) );
     m_Tree3->GetRootNode()->SetLocalTransform( XMMatrixScaling( 0.29f,0.29f,0.29f ) * XMMatrixTranslation( -2.6f,19.0f,38.0f ) );
@@ -285,7 +290,7 @@ void DirectX12Engine::LoadContent()
     m_Tree5->GetRootNode()->SetLocalTransform( XMMatrixScaling( 0.005f,0.005f,0.005f ) * XMMatrixTranslation( -9.0f,20.0f,10.0f ) );
     m_Ground->GetRootNode()->SetLocalTransform( XMMatrixScaling( 12.8f,12.8,12.8 ) * XMMatrixTranslation( -3.5f,3.5f,19.1f ) );
     m_Rock->GetRootNode()->SetLocalTransform( XMMatrixScaling( 0.46f,0.65,0.46 ) * XMMatrixTranslation( -22.0f,19.0f,-10.0f ) );
-
+    
 
     auto fence = commandQueue.ExecuteCommandList( commandList );
 
@@ -347,6 +352,7 @@ void DirectX12Engine::UnloadContent()
     m_SDRPipelineState.reset();
     m_UnlitPipelineState.reset();
 
+
     m_HDRRenderTarget.Reset();
 
     m_GUI.reset();
@@ -395,7 +401,11 @@ void DirectX12Engine::NearestEntity()
             float pixelDistance = Math::Distance2D( XMVectorSet( m_MouseX, m_MouseY, 0.0f, 0.0f ), entityPixel );
             if (pixelDistance<nearestDistance)
             {
-                if(!m_ModelInteracted)m_Scene         = it;
+                if ( m_ModelSelected)
+                {
+                    m_Scene = it;
+                    m_ModelSelected = false;
+                }
                 nearestDistance = pixelDistance;
             }
         }
@@ -439,10 +449,9 @@ void DirectX12Engine::OnUpdate( UpdateEventArgs& e )
     XMMATRIX translationMatrix = XMMatrixTranslationFromVector( cameraPoint );
     XMMATRIX scaleMatrix = XMMatrixScaling( 0.01f, 0.01f, 0.01f );
     m_Axis->GetRootNode()->SetLocalTransform( scaleMatrix * translationMatrix );
-    if ( m_Scene != nullptr && m_ModelSelected )
+     if ( m_Scene != nullptr )
     {
         m_Scene->GetRootNode()->SetPosition( cameraPoint );
-        m_ModelInteracted = true;
     }
     XMMATRIX viewMatrix = m_Camera.get_ViewMatrix();
 
@@ -597,43 +606,43 @@ void DirectX12Engine::OnRotateY(float amount)
 {
     amount *= 45.0f;
     auto rotationMatrix = XMMatrixRotationY( XMConvertToRadians( amount ) );
-    m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * rotationMatrix );
+    if(m_Scene!=nullptr)m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * rotationMatrix );
 }
 
 void DirectX12Engine::OnRotateX( float amount )
 {
     amount *= 45.0f;
     auto rotationMatrix = XMMatrixRotationX( XMConvertToRadians( amount ) );
-    m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * rotationMatrix );
+    if ( m_Scene != nullptr )m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * rotationMatrix );
 }
 
 void DirectX12Engine::OnRotateZ( float amount )
 {
     amount *= 45.0f;
     auto rotationMatrix = XMMatrixRotationX( XMConvertToRadians( amount ) );
-    m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * rotationMatrix );
+    if ( m_Scene != nullptr )m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * rotationMatrix );
 }
 
 void DirectX12Engine::OnResetRotation( )
 {
-    m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetDefaultTransform());
+    if ( m_Scene != nullptr )m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetDefaultTransform() );
 }
 
 void DirectX12Engine::OnScaleUp()
 {
     XMMATRIX scaleMatrix = XMMatrixScaling( 2.0f, 2.0f, 2.0f );
-    m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * scaleMatrix );
+    if ( m_Scene != nullptr )m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * scaleMatrix );
 }
 
 void DirectX12Engine::OnScaleDown()
 {
     XMMATRIX scaleMatrix = XMMatrixScaling( 0.5f, 0.5f, 0.5f );
-    m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * scaleMatrix );
+    if ( m_Scene != nullptr )m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * scaleMatrix );
 }
 
 void DirectX12Engine::OnKeyPressed( KeyEventArgs& e )
 {
-    if ( !ImGui::GetIO().WantCaptureKeyboard )
+    if ( !ImGui::GetIO().WantCaptureKeyboard)
     {
         switch ( e.Key )
         {
@@ -694,8 +703,7 @@ void DirectX12Engine::OnKeyPressed( KeyEventArgs& e )
         case KeyCode::NumPad3:
             OnScaleUp();
             break;
-        case KeyCode::Z:
-            //SelectModel();
+        case KeyCode::LButton:
             m_ModelSelected = true;
             break;
         case KeyCode::C:
@@ -714,7 +722,9 @@ void DirectX12Engine::OnKeyPressed( KeyEventArgs& e )
 
 void DirectX12Engine::OnKeyReleased( KeyEventArgs& e )
 {
-    if ( !ImGui::GetIO().WantCaptureKeyboard )
+    
+
+    if ( !ImGui::GetIO().WantCaptureKeyboard)
     {
         switch ( e.Key )
         {
@@ -724,6 +734,39 @@ void DirectX12Engine::OnKeyReleased( KeyEventArgs& e )
             case KeyCode::F11:
                 m_AllowFullscreenToggle = true;
             }
+            break;
+        case KeyCode::LButton:
+            m_ModelSelected = false;
+            m_Scene         = nullptr;
+            break;
+        }
+    }
+}
+
+void DirectX12Engine::OnMousePressed( MouseButtonEventArgs& m ) 
+{
+    if ( !ImGui::GetIO().WantCaptureMouse )
+    {
+        switch ( m.Button )
+        {
+        case MouseButton::Left:
+            m_ModelSelected = true;
+            break;
+        case MouseButton::Right:
+            m_Scene = nullptr;
+            break;
+        }
+    }
+}
+
+void DirectX12Engine::OnMouseReleased( MouseButtonEventArgs& m )
+{
+    if ( !ImGui::GetIO().WantCaptureMouse )
+    {
+        switch ( m.Button )
+        {
+        case MouseButton::Left:
+            m_ModelSelected = false;
             break;
         }
     }
@@ -850,8 +893,25 @@ void DirectX12Engine::OnGUI( const std::shared_ptr<CommandList>& commandList, co
         ImGui::EndMainMenuBar();
     }
 
-    if ( m_ShowControls && ImGui::Begin( "Controls", &m_ShowControls ) )
+    if ( m_ShowInspector ) 
     {
+        ImGui::Begin( "Inspector", &m_ShowInspector );
+        ImGui::SetWindowSize( ImVec2(200.0f,700.0f) );
+        ImGui::SetWindowPos( ImVec2( 0.0f, 20.0f ) );
+        for( auto it : m_AssetsList )
+        {
+            ImGui::Selectable( (const char*)it->GetRootNode()->GetName().c_str(), &it->GetRootNode()->GetSelection() );
+        }
+
+        
+        
+        ImGui::End();
+    }
+
+    if ( m_ShowControls )
+    {
+        ImGui::Begin( "Controls", &m_ShowControls );
+
         ImGui::Text( "KEYBOARD CONTROLS" );
         ImGui::BulletText( "ESC: Terminate application" );
         ImGui::BulletText( "Alt+Enter: Toggle fullscreen" );
@@ -868,8 +928,11 @@ void DirectX12Engine::OnGUI( const std::shared_ptr<CommandList>& commandList, co
         ImGui::Separator();
 
         ImGui::Text( "MOUSE CONTROLS" );
-        ImGui::BulletText( "LMB: Rotate camera" );
+        ImGui::BulletText( "MMB: Rotate camera" );
         ImGui::BulletText( "Mouse wheel: Zoom in/out on focal point" );
+        ImGui::BulletText( "LMB: Select an object" );
+        ImGui::BulletText( "RMB: Deselect an object" );
+
         ImGui::Separator();
 
         ImGui::Text( "GAMEPAD CONTROLS" );
@@ -882,10 +945,8 @@ void DirectX12Engine::OnGUI( const std::shared_ptr<CommandList>& commandList, co
         ImGui::Separator();
 
         ImGui::Text( "MODEL CONTROLS" );
-        ImGui::BulletText( "Hover over with mouse and Z: Select a model and it will snap to axis." );
         ImGui::BulletText( "While Selected Delete a model: Delete" );
         ImGui::BulletText( "Move with Camera Controls." );
-        ImGui::BulletText( "C: Leave the model" );
         ImGui::BulletText( "Rotate Z: Num8 and Num2" );
         ImGui::BulletText( "Rotate Y: Num4 and Num6" );
         ImGui::BulletText( "Rotate X: Num7 and Num9" );
@@ -902,6 +963,7 @@ void DirectX12Engine::OnGUI( const std::shared_ptr<CommandList>& commandList, co
 
         ImGui::End();
     }
+
     m_GUI->Render( commandList, renderTarget );
 }
 

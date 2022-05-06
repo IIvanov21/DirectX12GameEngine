@@ -34,4 +34,6 @@
 #VS Code folder and Assets
 .vs
 Assets
+build_vs2017
 build_vs2019
+build_vs2022

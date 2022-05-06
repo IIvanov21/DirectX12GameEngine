@@ -69,6 +69,7 @@ CameraController::CameraController( Camera& camera )
     // Map mouse events
     m_KMInput->MapBool( LMB, mouse, gainput::MouseButtonLeft );
     m_KMInput->MapBool( RMB, mouse, gainput::MouseButtonRight );
+    m_KMInput->MapBool( MMB, mouse, gainput::MouseButtonMiddle );
     m_KMInput->MapFloat( Pitch, mouse, gainput::MouseAxisY );
     m_KMInput->MapFloat( Yaw, mouse, gainput::MouseAxisX );
     m_KMInput->MapBool( ZoomIn, mouse, gainput::MouseButtonWheelUp );
@@ -142,7 +143,7 @@ void CameraController::Update( UpdateEventArgs& e )
     Smooth( m_PreviousYaw, yaw, e.DeltaTime );
 
     // Add mouse motion without smoothing.
-    if ( m_KMInput->GetBool( LMB ) && !ImGui::GetIO().WantCaptureMouse )
+    if ( m_KMInput->GetBool( MMB ) && !ImGui::GetIO().WantCaptureMouse )
     {
         pitch += m_KMInput->GetFloatDelta( Pitch ) * MOUSE_SENSITIVITY * rotationScale;
         yaw += m_KMInput->GetFloatDelta( Yaw ) * MOUSE_SENSITIVITY * rotationScale;

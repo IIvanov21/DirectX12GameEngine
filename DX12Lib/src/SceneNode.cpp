@@ -12,6 +12,7 @@ using namespace DirectX;
 SceneNode::SceneNode( const DirectX::XMMATRIX& localTransform )
 : m_Name( "SceneNode" )
 , m_AABB( { 0, 0, 0 }, {0, 0, 0} )
+, m_Selected(false)
 {
     m_AlignedData                     = (AlignedData*)_aligned_malloc( sizeof( AlignedData ), 16 );
     m_AlignedData->m_LocalTransform   = localTransform;
@@ -32,6 +33,16 @@ const std::string& SceneNode::GetName() const
 void SceneNode::SetName( const std::string& name )
 {
     m_Name = name;
+}
+
+bool& SceneNode::GetSelection() 
+{
+    return m_Selected;
+}
+
+void SceneNode::SetSelection(bool value) 
+{
+    m_Selected = value;
 }
 
 DirectX::XMMATRIX SceneNode::GetLocalTransform() const

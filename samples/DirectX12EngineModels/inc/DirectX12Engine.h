@@ -92,12 +92,24 @@ protected:
      * Invoked by the registered window when a key is pressed
      * while the window has focus.
      */
-    void OnKeyPressed( KeyEventArgs& e );
+    void OnKeyPressed( KeyEventArgs& e);
 
     /**
      * Invoked when a key on the keyboard is released.
      */
     void OnKeyReleased( KeyEventArgs& e );
+
+    /**
+     * Invoked by the registered window when a mouse key is pressed
+     * while the window has focus.
+     */
+    void OnMousePressed( MouseButtonEventArgs& m );
+
+    /**
+     * Invoked when a key on the mouse is released.
+     */
+    void OnMouseReleased( MouseButtonEventArgs& m );
+
 
     /**
      * Invoked when the mouse is moved over the registered window.
@@ -223,6 +235,8 @@ private:
     bool              m_ShowFileOpenDialog;
     bool              m_CancelLoading;
     bool              m_ShowControls;
+    bool              m_ShowInspector;
+    bool              m_Selected=false;
     std::atomic_bool  m_IsLoading;
     std::future<bool> m_LoadingTask;
     float             m_LoadingProgress;

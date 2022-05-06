@@ -30,6 +30,15 @@ public:
     void               SetName( const std::string& name );
 
     /**
+    * Set/Check if scene node has been selected.
+    */
+    bool               &GetSelection();
+    /**
+    * Default Value is false
+    */
+    void  SetSelection( bool value = false);
+
+    /**
      * Get the scene nodes local (relative to its parent's transform).
      */
     DirectX::XMMATRIX GetLocalTransform() const;
@@ -117,6 +126,7 @@ private:
     NodeNameMap              m_ChildrenByName;
     MeshList                 m_Meshes;
     DirectX::XMMATRIX        m_DefaultTransform;
+    bool                     m_Selected;
     // The AABB for this scene node. 
     // Created by merging the AABB of the meshes.
     DirectX::BoundingBox m_AABB;
