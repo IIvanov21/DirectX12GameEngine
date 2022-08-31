@@ -1,59 +1,59 @@
-[2022-05-06 13:49:47.341] [GameFramework] [info] GameFramework class created.
-[2022-05-06 13:49:47.689] [05-Models] [info] Device created: NVIDIA GeForce RTX 3070 Laptop GPU
-[2022-05-06 13:49:47.717] [ASSIMP] [info] T26776: Load Assets/Models/crytek-sponza/sponza_nobanner.assbin
-[2022-05-06 13:49:47.718] [ASSIMP] [info] T26776: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:47.718] [ASSIMP] [info] T26776: Import root directory is 'Assets/Models/crytek-sponza\'
-[2022-05-06 13:49:47.720] [ASSIMP] [info] T29624: Load Assets/Models/axis_of_evil.assbin
-[2022-05-06 13:49:47.720] [ASSIMP] [info] T29624: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:47.720] [ASSIMP] [info] T29624: Import root directory is 'Assets/Models\'
-[2022-05-06 13:49:47.728] [ASSIMP] [info] T29624: Entering post processing pipeline
-[2022-05-06 13:49:47.729] [ASSIMP] [info] T29624: Leaving post processing pipeline
-[2022-05-06 13:49:47.744] [ASSIMP] [info] T29624: Load Assets/Models/Avakado/Avakado.assbin
-[2022-05-06 13:49:47.745] [ASSIMP] [info] T29624: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:47.745] [ASSIMP] [info] T29624: Import root directory is 'Assets/Models/Avakado\'
-[2022-05-06 13:49:47.750] [ASSIMP] [info] T29624: Entering post processing pipeline
-[2022-05-06 13:49:47.750] [ASSIMP] [info] T29624: Leaving post processing pipeline
-[2022-05-06 13:49:48.050] [ASSIMP] [info] T26776: Entering post processing pipeline
-[2022-05-06 13:49:48.051] [ASSIMP] [info] T26776: Leaving post processing pipeline
-[2022-05-06 13:49:48.176] [ASSIMP] [info] T29624: Load Assets/Models/Ship/full_scene.assbin
-[2022-05-06 13:49:48.177] [ASSIMP] [info] T29624: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:48.177] [ASSIMP] [info] T29624: Import root directory is 'Assets/Models/Ship\'
-[2022-05-06 13:49:48.318] [ASSIMP] [info] T29624: Entering post processing pipeline
-[2022-05-06 13:49:48.319] [ASSIMP] [info] T29624: Leaving post processing pipeline
-[2022-05-06 13:49:48.380] [ASSIMP] [info] T29624: Load Assets/Models/Trees/Gledista_Triacanthos.assbin
-[2022-05-06 13:49:48.383] [ASSIMP] [info] T29624: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:48.383] [ASSIMP] [info] T29624: Import root directory is 'Assets/Models/Trees\'
-[2022-05-06 13:49:48.936] [ASSIMP] [info] T29624: Entering post processing pipeline
-[2022-05-06 13:49:48.937] [ASSIMP] [info] T29624: Leaving post processing pipeline
-[2022-05-06 13:49:49.275] [ASSIMP] [info] T29624: Load Assets/Models/Trees/Gledista_Triacanthos_2.assbin
-[2022-05-06 13:49:49.276] [ASSIMP] [info] T29624: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:49.276] [ASSIMP] [info] T29624: Import root directory is 'Assets/Models/Trees\'
-[2022-05-06 13:49:50.051] [ASSIMP] [info] T29624: Entering post processing pipeline
-[2022-05-06 13:49:50.053] [ASSIMP] [info] T29624: Leaving post processing pipeline
-[2022-05-06 13:49:50.539] [ASSIMP] [info] T29624: Load Assets/Models/Trees/Gledista_Triacanthos_3.assbin
-[2022-05-06 13:49:50.539] [ASSIMP] [info] T29624: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:50.539] [ASSIMP] [info] T29624: Import root directory is 'Assets/Models/Trees\'
-[2022-05-06 13:49:51.707] [ASSIMP] [info] T29624: Entering post processing pipeline
-[2022-05-06 13:49:51.709] [ASSIMP] [info] T29624: Leaving post processing pipeline
-[2022-05-06 13:49:52.455] [ASSIMP] [info] T29624: Load Assets/Models/Trees/Gledista_Triacanthos_5.assbin
-[2022-05-06 13:49:52.456] [ASSIMP] [info] T29624: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:52.456] [ASSIMP] [info] T29624: Import root directory is 'Assets/Models/Trees\'
-[2022-05-06 13:49:53.287] [ASSIMP] [info] T29624: Entering post processing pipeline
-[2022-05-06 13:49:53.290] [ASSIMP] [info] T29624: Leaving post processing pipeline
-[2022-05-06 13:49:53.779] [ASSIMP] [info] T29624: Load Assets/Models/Trees/Gledista_Triacanthos_6.assbin
-[2022-05-06 13:49:53.779] [ASSIMP] [info] T29624: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:53.779] [ASSIMP] [info] T29624: Import root directory is 'Assets/Models/Trees\'
-[2022-05-06 13:49:54.633] [ASSIMP] [info] T29624: Entering post processing pipeline
-[2022-05-06 13:49:54.636] [ASSIMP] [info] T29624: Leaving post processing pipeline
-[2022-05-06 13:49:55.160] [ASSIMP] [info] T29624: Load Assets/Models/Ground/uploads_files_2481142_Rocky_terrain2.assbin
-[2022-05-06 13:49:55.160] [ASSIMP] [info] T29624: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:55.161] [ASSIMP] [info] T29624: Import root directory is 'Assets/Models/Ground\'
-[2022-05-06 13:49:57.476] [ASSIMP] [info] T29624: Entering post processing pipeline
-[2022-05-06 13:49:57.481] [ASSIMP] [info] T29624: Leaving post processing pipeline
-[2022-05-06 13:49:58.663] [ASSIMP] [info] T29624: Load Assets/Models/Rocks/RockSet05A.assbin
-[2022-05-06 13:49:58.664] [ASSIMP] [info] T29624: Found a matching importer for this file format: Assimp Binary Importer.
-[2022-05-06 13:49:58.664] [ASSIMP] [info] T29624: Import root directory is 'Assets/Models/Rocks\'
-[2022-05-06 13:49:58.666] [ASSIMP] [info] T29624: Entering post processing pipeline
-[2022-05-06 13:49:58.666] [ASSIMP] [info] T29624: Leaving post processing pipeline
-[2022-05-06 13:49:59.003] [05-Models] [info] Resize: 1920, 1055
-[2022-05-06 13:51:07.702] [GameFramework] [info] GameFramework class destroyed.
+[2022-06-29 17:00:41.630] [GameFramework] [info] GameFramework class created.
+[2022-06-29 17:00:42.030] [05-Models] [info] Device created: NVIDIA GeForce RTX 3070 Laptop GPU
+[2022-06-29 17:00:42.145] [ASSIMP] [info] T33404: Load Assets/Models/crytek-sponza/sponza_nobanner.assbin
+[2022-06-29 17:00:42.148] [ASSIMP] [info] T25976: Load Assets/Models/axis_of_evil.assbin
+[2022-06-29 17:00:42.154] [ASSIMP] [info] T33404: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:42.154] [ASSIMP] [info] T33404: Import root directory is 'Assets/Models/crytek-sponza\'
+[2022-06-29 17:00:42.156] [ASSIMP] [info] T25976: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:42.157] [ASSIMP] [info] T25976: Import root directory is 'Assets/Models\'
+[2022-06-29 17:00:42.166] [ASSIMP] [info] T25976: Entering post processing pipeline
+[2022-06-29 17:00:42.166] [ASSIMP] [info] T25976: Leaving post processing pipeline
+[2022-06-29 17:00:42.185] [ASSIMP] [info] T25976: Load Assets/Models/Avakado/Avakado.assbin
+[2022-06-29 17:00:42.193] [ASSIMP] [info] T25976: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:42.193] [ASSIMP] [info] T25976: Import root directory is 'Assets/Models/Avakado\'
+[2022-06-29 17:00:42.200] [ASSIMP] [info] T25976: Entering post processing pipeline
+[2022-06-29 17:00:42.200] [ASSIMP] [info] T25976: Leaving post processing pipeline
+[2022-06-29 17:00:42.493] [ASSIMP] [info] T33404: Entering post processing pipeline
+[2022-06-29 17:00:42.494] [ASSIMP] [info] T33404: Leaving post processing pipeline
+[2022-06-29 17:00:42.675] [ASSIMP] [info] T25976: Load Assets/Models/Ship/full_scene.assbin
+[2022-06-29 17:00:42.681] [ASSIMP] [info] T25976: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:42.681] [ASSIMP] [info] T25976: Import root directory is 'Assets/Models/Ship\'
+[2022-06-29 17:00:42.816] [ASSIMP] [info] T25976: Entering post processing pipeline
+[2022-06-29 17:00:42.817] [ASSIMP] [info] T25976: Leaving post processing pipeline
+[2022-06-29 17:00:42.895] [ASSIMP] [info] T25976: Load Assets/Models/Trees/Gledista_Triacanthos.assbin
+[2022-06-29 17:00:42.904] [ASSIMP] [info] T25976: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:42.904] [ASSIMP] [info] T25976: Import root directory is 'Assets/Models/Trees\'
+[2022-06-29 17:00:43.889] [ASSIMP] [info] T25976: Entering post processing pipeline
+[2022-06-29 17:00:43.892] [ASSIMP] [info] T25976: Leaving post processing pipeline
+[2022-06-29 17:00:44.555] [ASSIMP] [info] T25976: Load Assets/Models/Trees/Gledista_Triacanthos_2.assbin
+[2022-06-29 17:00:44.565] [ASSIMP] [info] T25976: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:44.566] [ASSIMP] [info] T25976: Import root directory is 'Assets/Models/Trees\'
+[2022-06-29 17:00:45.576] [ASSIMP] [info] T25976: Entering post processing pipeline
+[2022-06-29 17:00:45.580] [ASSIMP] [info] T25976: Leaving post processing pipeline
+[2022-06-29 17:00:46.171] [ASSIMP] [info] T25976: Load Assets/Models/Trees/Gledista_Triacanthos_3.assbin
+[2022-06-29 17:00:46.178] [ASSIMP] [info] T25976: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:46.178] [ASSIMP] [info] T25976: Import root directory is 'Assets/Models/Trees\'
+[2022-06-29 17:00:47.614] [ASSIMP] [info] T25976: Entering post processing pipeline
+[2022-06-29 17:00:47.619] [ASSIMP] [info] T25976: Leaving post processing pipeline
+[2022-06-29 17:00:48.442] [ASSIMP] [info] T25976: Load Assets/Models/Trees/Gledista_Triacanthos_5.assbin
+[2022-06-29 17:00:48.448] [ASSIMP] [info] T25976: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:48.448] [ASSIMP] [info] T25976: Import root directory is 'Assets/Models/Trees\'
+[2022-06-29 17:00:49.368] [ASSIMP] [info] T25976: Entering post processing pipeline
+[2022-06-29 17:00:49.372] [ASSIMP] [info] T25976: Leaving post processing pipeline
+[2022-06-29 17:00:49.904] [ASSIMP] [info] T25976: Load Assets/Models/Trees/Gledista_Triacanthos_6.assbin
+[2022-06-29 17:00:49.910] [ASSIMP] [info] T25976: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:49.910] [ASSIMP] [info] T25976: Import root directory is 'Assets/Models/Trees\'
+[2022-06-29 17:00:50.908] [ASSIMP] [info] T25976: Entering post processing pipeline
+[2022-06-29 17:00:50.911] [ASSIMP] [info] T25976: Leaving post processing pipeline
+[2022-06-29 17:00:51.521] [ASSIMP] [info] T25976: Load Assets/Models/Ground/uploads_files_2481142_Rocky_terrain2.assbin
+[2022-06-29 17:00:51.528] [ASSIMP] [info] T25976: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:51.528] [ASSIMP] [info] T25976: Import root directory is 'Assets/Models/Ground\'
+[2022-06-29 17:00:54.089] [ASSIMP] [info] T25976: Entering post processing pipeline
+[2022-06-29 17:00:54.099] [ASSIMP] [info] T25976: Leaving post processing pipeline
+[2022-06-29 17:00:55.466] [ASSIMP] [info] T25976: Load Assets/Models/Rocks/RockSet05A.assbin
+[2022-06-29 17:00:55.472] [ASSIMP] [info] T25976: Found a matching importer for this file format: Assimp Binary Importer.
+[2022-06-29 17:00:55.472] [ASSIMP] [info] T25976: Import root directory is 'Assets/Models/Rocks\'
+[2022-06-29 17:00:55.474] [ASSIMP] [info] T25976: Entering post processing pipeline
+[2022-06-29 17:00:55.474] [ASSIMP] [info] T25976: Leaving post processing pipeline
+[2022-06-29 17:00:55.842] [05-Models] [info] Resize: 1920, 1080
+[2022-06-29 17:01:07.568] [GameFramework] [info] GameFramework class destroyed.

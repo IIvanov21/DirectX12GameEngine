@@ -50,12 +50,19 @@ public:
     void UnloadContent();
 
     /**
-     * Interact with models.
-     */
-    void SelectModel();
+    * Focus point for the camera. Potenially will be better to 
+    * move in Camera Controls in future.
+    */
+    void ObjectCameraFocus();
 
+    /**
+    * Delete Entities
+    */
     void DeleteEntity();
-
+    /**
+    * Calculate raycast that provides nearest model to the mouse cursor.
+    * Limit will need readjustments to allow better selection and deselect of an object based on empty click in space.
+    */
     void NearestEntity();
 
 protected:

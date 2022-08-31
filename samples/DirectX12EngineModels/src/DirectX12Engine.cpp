@@ -371,6 +371,12 @@ float Distance( const XMVECTOR& v1, const XMVECTOR& v2 )
     return distance;
 }
 
+void DirectX12Engine::ObjectCameraFocus() 
+{
+    if ( m_Scene != nullptr )
+        m_Camera.set_FocalPoint( m_Scene->GetRootNode()->GetPosition() );
+}
+
 void DirectX12Engine::DeleteEntity()
 {
     if ( m_Scene != nullptr )//Find the entity in the list and removes its reference
@@ -449,13 +455,23 @@ void DirectX12Engine::OnUpdate( UpdateEventArgs& e )
 
     // Move the Axis model to the focal point of the camera.
     XMVECTOR cameraPoint = m_Camera.get_FocalPoint();
-    XMMATRIX translationMatrix = XMMatrixTranslationFromVector( cameraPoint );
-    XMMATRIX scaleMatrix = XMMatrixScaling( 0.01f, 0.01f, 0.01f );
+    XMMATRIX translationMatrix;
+    if ( m_Scene == nullptr )
+    {
+        translationMatrix = XMMatrixTranslationFromVector( cameraPoint );
+    }
+    else
+    {
+        XMVECTOR temp              = { 0.0f, 0.0f, 0.0f, 0.0f };
+        translationMatrix = XMMatrixTranslationFromVector( m_Scene->GetRootNode()->GetPosition() );
+        
+    }
+    XMMATRIX scaleMatrix = XMMatrixScaling( 0.1f, 0.1f, 0.1f );
     m_Axis->GetRootNode()->SetLocalTransform( scaleMatrix * translationMatrix );
-     if ( m_Scene != nullptr )
+    /* if ( m_Scene != nullptr )
     {
         m_Scene->GetRootNode()->SetPosition( cameraPoint );
-    }
+    }*/
     XMMATRIX viewMatrix = m_Camera.get_ViewMatrix();
 
     const int numDirectionalLights = 3;
@@ -553,7 +569,6 @@ void DirectX12Engine::OnRender()
 
         // Render the scene.
     
-        m_Axis->Accept( unlitPass );
         
         for ( auto it: m_AssetsList )
         {
@@ -590,6 +605,10 @@ void DirectX12Engine::OnRender()
             m_Cone->Accept( unlitPass );
         }
 
+        //Render Axis last to render on top of everything else
+        m_Axis->Accept( unlitPass );
+
+
         // Resolve the MSAA render target to the swapchain's backbuffer.
         auto swapChainBackBuffer = m_SwapChain->GetRenderTarget().GetTexture( AttachmentPoint::Color0 );
         auto msaaRenderTarget    = m_RenderTarget.GetTexture( AttachmentPoint::Color0 );
@@ -622,7 +641,7 @@ void DirectX12Engine::OnRotateX( float amount )
 void DirectX12Engine::OnRotateZ( float amount )
 {
     amount *= 45.0f;
-    auto rotationMatrix = XMMatrixRotationX( XMConvertToRadians( amount ) );
+    auto rotationMatrix = XMMatrixRotationZ( XMConvertToRadians( amount ) );
     if ( m_Scene != nullptr )m_Scene->GetRootNode()->SetLocalTransform( m_Scene->GetRootNode()->GetLocalTransform() * rotationMatrix );
 }
 
@@ -669,6 +688,9 @@ void DirectX12Engine::OnKeyPressed( KeyEventArgs& e )
             }
         case KeyCode::V:
             m_SwapChain->ToggleVSync();
+            break;
+        case KeyCode::F:
+            ObjectCameraFocus();
             break;
         case KeyCode::R:
             // Reset camera transform
